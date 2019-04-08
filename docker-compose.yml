@@ -1,18 +1,29 @@
-version: '3'
+version: '3.7'
 
 services:
+  # The main configuration for the application.
+  # It contains information about the repository image,
+  # the port mappings, and the load balancer configuration.
   app:
     image: emenkens/image-app-api
     ports:
-    - target: 3000
-      published: 3000
-      protocol: tcp
-      mode: ingress
+    - target: 3000    # We are mapping the port 3000 on the target
+      published: 3000 # to port 3000
+      protocol: tcp   #
+      mode: ingress   # This provides automatic load balancing
+
+    # The following section is actually quite self-explainatory
+    # It's the deploy section of the configuration.
+    # It explains the resource limits and the restart policy.
 
     deploy:
-      replicas: 2
-      limits:
-        cpus: '0.50'
-        memory: 64M
-
-    restart: on-failure
+      replicas: 1
+      resources:
+        limits:
+          cpus: '0.50'
+          memory: 64M
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 10
+        window: 30s
