@@ -1,0 +1,15 @@
+{
+    "name": "image-api-app",
+    "version": "1.0.0",
+    "main": "index.js",
+    "author": "elme17",
+    "license": "UNLICENSED",
+    "dependencies": {
+        "express": "4.16.4",
+        "lodash": "4.17.11",
+        "formidable": "1.2.1"
+    },
+    "scripts": {
+        "start": "node index.js"
+    }
+}
