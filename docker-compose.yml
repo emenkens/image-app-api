@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    image: emenkens/image-app-api
+    ports:
+    - target: 3000
+      published: 3000
+      protocol: tcp
+      mode: ingress
+
+    deploy:
+      replicas: 2
+      limits:
+        cpus: '0.50'
+        memory: 64M
+
+    restart: on-failure
